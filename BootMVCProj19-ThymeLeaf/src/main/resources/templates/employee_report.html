@@ -1,0 +1,46 @@
+<html xmlns:th="https://thymeleaf.org">
+<div th:if="${!empList.empty}">
+	<table style="text-align: center" align="center" border='1'
+		bgcolor='cyan'>
+		<tr>
+			<th>eno</th>
+			<th>ename</th>
+			<th>desg</th>
+			<th>salary</th>
+			<th>deptNo</th>
+			<th>Operations</th>
+		</tr>
+
+		<tr th:each="emp:${empList}">
+			<td><span th:text="${emp.empno}"></span></td>
+			<td><span th:text="${emp.ename}"></span></td>
+			<td><span th:text="${emp.job}"></span></td>
+			<td><span th:text="${emp.sal}"></span></td>
+			<td><span th:text="${emp.deptno}"></span></td>
+			<td><a th:href="@{/employee/edit_employee(empno=${emp.empno})}"><img
+					th:src="@{/images/edit.png}" width="50px" height="50px"></a>&nbsp;&nbsp;
+				<a th:href="@{/employee/delete_employee(empno=${emp.empno})}"
+				onclick="return confirm('Do u want to delete?')"><img
+					th:src="@{/images/delete.png}" width="50px" height="50px"></a></td>
+		</tr>
+	</table>
+	<div th:if="${empList.empty}">
+		<h1 style="color: red; text-align: center">Records not found</h1>
+	</div>
+
+</div>
+
+
+<h1 style="color: green; text-align: center" th:text="${resultMsg}"></h1>
+
+<br>
+<h1 style="text-align: center">
+	<a href="@{/employee/insert_employee}">Add Employee</a>
+</h1>
+<br>
+<br>
+<h1 style="text-align: center">
+	<a th:href="@{/employee/}"><img th:src="@{/images/home.png}"
+		width="100px" height="50px" /></a>
+</h1>
+</html>
